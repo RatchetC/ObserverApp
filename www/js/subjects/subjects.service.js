@@ -26,7 +26,7 @@
           promiseObj.resolve(service.subjects);
         },
         function failure(error) {
-          promiseObj.reject(response.data);
+          promiseObj.reject(error);
         }
       );
 

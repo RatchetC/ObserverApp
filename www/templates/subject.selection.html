@@ -1,9 +1,12 @@
-<ion-view view-title="Subject Selection">
+<ion-view title="{{vm.currEvent.name}}">
+  <ion-nav-buttons side="right">
+    <button ng-click="vm.makeObservation()" class="button button-balanced">Next</button>
+  </ion-nav-buttons>
   <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="subject in vm.subjects">
-        {{subject.name}}
-      </ion-item>
-    </ion-list>
+      <ion-list>
+        <ion-item ng-repeat="subject in vm.subjects">
+          {{subject.nickname}}
+        </ion-item>
+      </ion-list>
   </ion-content>
 </ion-view>

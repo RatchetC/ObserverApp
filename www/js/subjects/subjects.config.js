@@ -10,20 +10,8 @@
       cache: false,
       url: '/subject-selection',
       templateUrl: 'templates/subject.selection.html',
-      controller: 'SubjectSelectCtrl as vm',
-      resolve: {
-        allSubjects: function (subjectsSrvc) {
-          return subjectsSrvc.getAllSubjects();
-        }
-      }
+      controller: 'SubjectSelectCtrl as vm'
     });
-
-    // $stateProvider.state('infinite-digest-fix', {
-    //   cache: false,
-    //   url: '/infinite-digest-fix',
-    //   templateUrl: 'templates/subject.selection.html',
-    //   controller: 'Blah as vm'
-    // });
 
     $urlRouterProvider.otherwise('subject-selection');
 
