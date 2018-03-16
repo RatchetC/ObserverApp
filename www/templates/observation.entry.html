@@ -1,9 +1,16 @@
 <ion-view title="Observation Entry">
+  <ion-spinner ng-show="vm.loading" icon="lines" class="spinner"></ion-spinner>
   <ion-content>
-    <h2>{{vm.currActivity.name}}</h2>
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">Reading</span>
-      <input type="text" placeholder="John">
-    </label>
+    <div style="text-align:center; padding-top: 10%;">
+      <h2>{{vm.currActivity.name}}</h2>
+      <p>{{vm.currActivity.description}}</p>
+    </div>
+    <form name="observationForm" class="list list-inset" novalidate>
+      <label class="item item-input">
+        <input name="observationValue" type="number" placeholder="Numbers only" ng-model="vm.observation.value" ng-minlength="1" required>
+        <span class="input-label" style="text-align:center; border-left: 1px solid #ddd;">{{vm.currActivity.units}}</span>
+      </label>
+      <button class="button button-block button-positive" ng-disabled="observationForm.$invalid" ng-click="vm.saveObservation()">Save</button>
+    </form>
   </ion-content>
 </ion-view>

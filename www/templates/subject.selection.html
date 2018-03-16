@@ -1,12 +1,21 @@
 <ion-view title="{{vm.currEvent.name}}">
+  <ion-nav-buttons side="left">
+    <button ng-click="vm.changeEvent()" class="button button-positive">Event</button>
+  </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button ng-click="vm.makeObservation()" class="button button-balanced">Next</button>
+    <button ng-disabled="!vm.subjectSelected" ng-click="vm.makeObservation()" class="button button-positive">Next</button>
   </ion-nav-buttons>
   <ion-content>
-      <ion-list>
-        <ion-item ng-repeat="subject in vm.subjects">
-          {{subject.nickname}}
-        </ion-item>
-      </ion-list>
+    <ion-item>
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="vm.filterSubject" placeholder="Search">
+      </label>
+    </ion-item>
+    <div class="list list-inset">
+      <ion-item ng-repeat="subject in vm.subjects | filter:vm.filterSubject" ng-click="vm.selectSubject(subject)">
+        <h2>{{subject.nickname}}</h2>
+      </ion-item>
+    </div>
   </ion-content>
 </ion-view>

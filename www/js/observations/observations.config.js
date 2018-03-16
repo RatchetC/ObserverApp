@@ -8,7 +8,7 @@
 
     $stateProvider.state('observation-entry', {
       cache: false,
-      url: '/observation-entry',
+      url: '/observation-entry/:subjectID',
       templateUrl: 'templates/observation.entry.html',
       controller: 'ObservationEntryCtrl as vm'
     });
