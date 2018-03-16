@@ -6,13 +6,14 @@
 
   app.controller('SubjectSelectCtrl', control);
 
-  control.$inject = ['$state', '$ionicPopup', '$ionicHistory', 'subjectsSrvc'];
+  control.$inject = ['$state', '$ionicPopup', '$ionicHistory', 'subjectsSrvc', 'subjectsForThisEvent'];
 
-  function control($state, $ionicPopup, $ionicHistory, subjectsSrvc) {
+  function control($state, $ionicPopup, $ionicHistory, subjectsSrvc, subjectsForThisEvent) {
 
-    
+    console.log(subjectsForThisEvent);
+
     var vm = angular.extend(this, {
-      subjects: [],
+      subjects: subjectsForThisEvent,
       subjectSelected: false,
       filterSubject: undefined,
       selectedSubjectID: undefined
@@ -32,15 +33,15 @@
       var selectedEvent = angular.fromJson(window.localStorage.currEvent);
       // TODO: Get only the subjects that belong to the event. Must also sync the subjects as in a real event, they will be being added to the database continously.
 
-      subjectsSrvc.getAllSubjects().then(
-        function success(response) {
-          vm.subjects = response;
-        },
-        function failure(error) {
-          // Show popup asking them to check their internet connection?
-          console.error(error);
-        }
-      );
+      // subjectsSrvc.getAllSubjects().then(
+      //   function success(response) {
+      //     vm.subjects = response;
+      //   },
+      //   function failure(error) {
+      //     // Show popup asking them to check their internet connection?
+      //     console.error(error);
+      //   }
+      // );
     }
 
     init();
