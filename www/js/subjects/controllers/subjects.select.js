@@ -6,9 +6,9 @@
 
   app.controller('SubjectSelectCtrl', control);
 
-  control.$inject = ['$state', '$ionicPopup', '$ionicHistory', 'subjectsSrvc', 'subjectsForThisEvent'];
+  control.$inject = ['$state', '$ionicPopup', '$ionicHistory', '$timeout', '$scope', 'subjectsSrvc', 'subjectsForThisEvent'];
 
-  function control($state, $ionicPopup, $ionicHistory, subjectsSrvc, subjectsForThisEvent) {
+  function control($state, $ionicPopup, $ionicHistory, $timeout, $scope, subjectsSrvc, subjectsForThisEvent) {
 
     console.log(subjectsForThisEvent);
 
@@ -31,17 +31,7 @@
       }
 
       var selectedEvent = angular.fromJson(window.localStorage.currEvent);
-      // TODO: Get only the subjects that belong to the event. Must also sync the subjects as in a real event, they will be being added to the database continously.
 
-      // subjectsSrvc.getAllSubjects().then(
-      //   function success(response) {
-      //     vm.subjects = response;
-      //   },
-      //   function failure(error) {
-      //     // Show popup asking them to check their internet connection?
-      //     console.error(error);
-      //   }
-      // );
     }
 
     init();
@@ -72,6 +62,23 @@
         }
 
       });
+    };
+
+    vm.refresh = function refresh() {
+
+      subjectsSrvc.getSubjectsForThisEvent(vm.currEvent.id).then(
+        function success(response) {
+          vm.subjects = response;
+          $scope.$broadcast('scroll.refreshComplete');
+        },
+        function failure(error) {
+          $ionicPopup.alert({
+            title: 'Error',
+            template: 'Failed to refresh. Please checck your internet connection and try again.'
+          });
+        }
+      );
+
     };
 
   }
