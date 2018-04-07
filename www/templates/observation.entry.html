@@ -1,9 +1,11 @@
 <ion-view title="Observation Entry">
-  <ion-spinner ng-show="vm.loading" icon="lines" class="spinner"></ion-spinner>
+  <ion-spinner ng-show="vm.loading" icon="spiral" class="spinner spinner-positive observation-spinner"></ion-spinner>
   <ion-content>
     <div style="text-align:center; padding-top: 10%;">
       <h2>{{vm.currActivity.name}}</h2>
       <p>{{vm.currActivity.description}}</p>
+      <p>Min - {{vm.currActivity.minLegalValue}}</p>
+      <p>Max - {{vm.currActivity.maxLegalValue}}</p>
     </div>
     <form name="observationForm" class="list list-inset" novalidate>
       <label class="item item-input">
