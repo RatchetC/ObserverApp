@@ -1,6 +1,6 @@
 <ion-view title="Select Activity">
   <ion-content>
-    <ion-list>
+    <ion-list type="list-inset">
       <ion-item ng-repeat="activity in vm.activities" ng-click="vm.selectActivity(activity)">
         <h2>{{activity.name}}</h2>
         <p>{{activity.description}}</p>

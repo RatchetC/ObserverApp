@@ -1,6 +1,6 @@
 <ion-view title="Select Event">
   <ion-content>
-    <ion-list>
+    <ion-list type="list-inset">
       <ion-item ng-repeat="event in vm.events" ng-click="vm.selectEvent(event)">
         <h2>{{event.name}}</h2>
       </ion-item>
